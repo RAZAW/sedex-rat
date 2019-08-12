@@ -1,0 +1,11 @@
+{
+  "siteRating": "HIGH",
+  "siteScore": 20,
+  "businessEthicsSaqRiskScore": 30,
+  "environmentSaqRiskScore": 40,
+  "healthAndSafetySaqRiskScore": 50,
+  "labourSaqRiskScore": 60,
+  "profileSaqRiskScore": 70,
+  "overallSaqRiskScore": 80,
+  "inherentSaqRiskScore": 90
+}
