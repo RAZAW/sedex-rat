@@ -36,7 +36,7 @@ public class SaqTest {
         String resBody = response.getBody().print();
         assertThat("response body is not empty", resBody, is(notNullValue()));
         long resTime = response.getTime();
-        assertThat("response time is standard", resTime, is(lessThanOrEqualTo(50000L)));
+        assertThat("response time is standard", resTime, is(lessThanOrEqualTo(100000L)));
     }
 
     @Test
@@ -61,6 +61,6 @@ public class SaqTest {
         String resBody = response.getBody().print();
         assertThat("response body should not be empty", resBody, is(notNullValue()));
         long resTime = response.getTime();
-        assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(5000L)));
+        assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(20000L)));
     }
 }

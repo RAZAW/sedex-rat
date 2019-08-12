@@ -92,7 +92,7 @@ public class UsersTest {
         LOGGER.info("site list contains " + resBody.size() + " sites");
         long resTime = response.time();
         LOGGER.info("response time is " + resTime);
-        assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(1500L)));
+        assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(2000L)));
 
     }
 }

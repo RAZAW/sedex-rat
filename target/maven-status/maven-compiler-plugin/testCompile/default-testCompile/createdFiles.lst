@@ -1,1 +1,7 @@
+AuditsTest.class
+ApiTest.class
 UsersTest.class
+SaqTest.class
+OrgsTest.class
+SitesTest.class
+WorkerTypesTest.class

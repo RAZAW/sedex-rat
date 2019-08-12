@@ -5,8 +5,8 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.logging.Logger;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
@@ -14,6 +14,8 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 public class WorkerTypesTest {
+
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(WorkerTypesTest.class));
 
     @Test
     public void getAllWorkerTypes() {
@@ -37,7 +39,7 @@ public class WorkerTypesTest {
         assertThat("response body size should not be 0", resBody.size(), is(greaterThanOrEqualTo(0)));
         long resTime = response.time();
         LOGGER.info("response time is " + resTime + " ms");
-        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(500L)));
+        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(1000L)));
 
     }
 }

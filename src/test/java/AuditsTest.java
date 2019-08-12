@@ -60,7 +60,7 @@ public class AuditsTest {
         String resBody = response.getBody().print();
         assertThat("response body is not null", resBody, is(notNullValue()));
         long resTime = response.time();
-        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(25000L)));
+        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(50000L)));
 
     }
 }
