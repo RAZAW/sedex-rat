@@ -4,13 +4,14 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class WorkerTypesTest {
@@ -34,12 +35,15 @@ public class WorkerTypesTest {
 
         int statusCode = response.getStatusCode();
         assertThat("status code should be 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
+
         List<String> resBody = response.jsonPath().getList("$");
         LOGGER.info("response body contains list of " + resBody.size() + " items");
         assertThat("response body size should not be 0", resBody.size(), is(greaterThanOrEqualTo(0)));
+
         long resTime = response.time();
         LOGGER.info("response time is " + resTime + " ms");
-        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(1000L)));
+        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(2000L)));
 
     }
 }

@@ -5,6 +5,8 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 import utils.FileUtil;
 
+import java.util.logging.Logger;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
@@ -12,6 +14,9 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 public class SitesTest {
+
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(SitesTest.class));
+
 
     @Test
     public void sitesChangedInTimePeriod() {
@@ -29,11 +34,13 @@ public class SitesTest {
 
         int statusCode = response.getStatusCode();
         assertThat("status returned should be 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
         String resBody = response.getBody().print();
         assertThat("response body should not be empty", resBody, is(notNullValue()));
+        LOGGER.info("Response Body is " + resBody);
         long resTime = response.getTime();
-        System.out.println(resTime);
         assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(4000L)));
+        LOGGER.info("Response time is " + resTime);
 
 
     }
@@ -49,14 +56,18 @@ public class SitesTest {
         assert template != null;
 
         Response response = request.
-                            given().
-                            contentType("application/json\r\n").
-                            body(template).
-                            when().
-                            put("sites/ZS46712010");
+                given().
+                contentType("application/json\r\n").
+                body(template).
+                when().
+                put("sites/ZS46712010");
 
         int statusCode = response.getStatusCode();
         assertThat("status code is 200", statusCode, is(204));
-        }
+        LOGGER.info("Status code is " + statusCode);
+        long resTime = response.time();
+        assertThat("response time is fast", resTime, is(lessThanOrEqualTo(2000L)));
+        LOGGER.info("Response time is " + resTime);
+    }
 
 }

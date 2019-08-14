@@ -4,6 +4,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
+import java.util.logging.Logger;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -11,6 +13,9 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 public class SaqTest {
+
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(SaqTest.class));
+
 
     @Test
     public void ratSaqAnswers() {
@@ -33,10 +38,16 @@ public class SaqTest {
 
         int statusCode = response.getStatusCode();
         assertThat("response code is 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
+
         String resBody = response.getBody().print();
         assertThat("response body is not empty", resBody, is(notNullValue()));
+        LOGGER.info("Response Body is " + resBody);
+
         long resTime = response.getTime();
         assertThat("response time is standard", resTime, is(lessThanOrEqualTo(100000L)));
+        LOGGER.info("Response time is " + resTime);
+
     }
 
     @Test
@@ -58,9 +69,15 @@ public class SaqTest {
 
         int statusCode = response.getStatusCode();
         assertThat("status code should be 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
+
         String resBody = response.getBody().print();
         assertThat("response body should not be empty", resBody, is(notNullValue()));
+        LOGGER.info("Response Body is " + resBody);
+
         long resTime = response.getTime();
         assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(20000L)));
+        LOGGER.info("Response time is " + resTime);
+
     }
 }

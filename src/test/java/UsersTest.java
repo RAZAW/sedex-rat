@@ -38,11 +38,15 @@ public class UsersTest {
 
         int statusCode = response.getStatusCode();
         assertThat("status code should be 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
+
         String resBody = response.getBody().print();
         assertThat("response body should not be empty", resBody, is(notNullValue()));
+        LOGGER.info("Response body is " + resBody);
+
         long resTime = response.time();
+        assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(2500L)));
         LOGGER.info("response time is " + resTime);
-        assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(2000L)));
 
     }
 
@@ -63,11 +67,16 @@ public class UsersTest {
 
         int statusCode = response.getStatusCode();
         assertThat("status code should be 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
+
         String resBody = response.getBody().print();
         assertThat("response body should not be empty", resBody, is(notNullValue()));
+        LOGGER.info("Response body is " + resBody);
+
         long resTime = response.time();
-        LOGGER.info("response time is " + resTime);
         assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(3000L)));
+        LOGGER.info("response time is " + resTime);
+
     }
 
     @Test
@@ -87,12 +96,15 @@ public class UsersTest {
 
         int statusCode = response.getStatusCode();
         assertThat("status code returned should be 200", statusCode, is(200));
+        LOGGER.info("Status code is " + statusCode);
+
         List<String> resBody = response.jsonPath().get();
         assertThat("response body should not be empty", resBody.size(), is(greaterThan(0)));
-        LOGGER.info("site list contains " + resBody.size() + " sites");
+        LOGGER.info("Site list contains " + resBody.size() + " sites");
+
         long resTime = response.time();
-        LOGGER.info("response time is " + resTime);
         assertThat("response time should be fast", resTime, is(lessThanOrEqualTo(2000L)));
+        LOGGER.info("Response time is " + resTime);
 
     }
 }
